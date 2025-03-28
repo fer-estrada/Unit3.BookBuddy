@@ -25,9 +25,9 @@ const LogIn = () => {
             <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box mt-5" >
 
                 <label className="fieldset-label justify-center text-center" >Don't have an account?</label>
-                <button className="btn btn-neutral mt-2">Sign Up</button>
+                <button className="btn btn-neutral mt-2" onClick={navigate('/signup')} >Sign Up</button>
 
-                <label className="fieldset-label justify-center text-center underline mt-2 cursor-pointer" onClick={() => navigate('/guestview')} >Continue as Guest</label>
+                <label className="fieldset-label justify-center text-center underline mt-2 cursor-pointer" onClick={() => navigate('/homeview')} >Continue as Guest</label>
 
             </fieldset>
         </div>
