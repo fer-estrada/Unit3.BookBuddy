@@ -21,7 +21,7 @@ const SignUp = () => {
                 <label className="fieldset=label" >Re-enter password:</label>
                 <input type="password" className="input" placeholder="Password" />
 
-                <button className="btn btn-neutral mt-4">Sign Up</button>
+                <button className="btn btn-neutral mt-4" onClick={() => navigate('/accountview')}>Sign Up</button>
             </fieldset>
         </div>
     );
