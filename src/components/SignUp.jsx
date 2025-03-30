@@ -42,10 +42,10 @@ const SignUp = () => {
                     <input type="email" className="input" placeholder="example@fullstack.com" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                     <label className="fieldset=label" >Password:</label>
-                    <input type="password" className="input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" className="input" placeholder="P@ssword!1" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                     <label className="fieldset=label" >Re-enter password:</label>
-                    <input type="password" className="input" placeholder="Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <input type="password" className="input" placeholder="P@ssword!1" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                     {password !== confirmPassword && <p className="text-error">Passwords do not match</p>}
 
                     <button className="btn btn-neutral mt-4">Sign Up</button>

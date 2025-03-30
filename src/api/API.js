@@ -6,6 +6,7 @@ const endpoint = {
     account: "/users/me",
     books: "/books",
     reservations: "/reservations",
+    returns: "/reservations"
 }
 
 export async function register({ firstname, lastname, email, password }) {
@@ -120,15 +121,15 @@ export async function fetchReservations(token) {
   }
 }
 
-export async function reserveBook(token, reservationData) {
+export async function reserveBook(token, id) {
   try {
-    const response = await fetch(APIUrl + "/reservations", {
+    const response = await fetch(APIUrl + endpoint.reservations, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(reservationData),
+      body: JSON.stringify({ bookId: id }),
     });
 
     if (!response.ok) {
@@ -142,22 +143,18 @@ export async function reserveBook(token, reservationData) {
   }
 }
 
-export async function returnBook(token, returnData) {
+export async function returnBook(token, id) {
   try {
-    const response = await fetch(APIUrl + "/returns", {
-      method: "POST",
+    const response = await fetch(APIUrl + endpoint.returns + `/${id}`, {
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify(returnData),
     });
 
     if (!response.ok) {
       throw new Error(`Failed to return book: ${response.status}`);
     }
-
-    return await response.json();
   } catch (error) {
     console.error("Return book error:", error);
     throw error;
