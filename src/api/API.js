@@ -8,40 +8,35 @@ const endpoint = {
     reservations: "/reservations",
 }
 
-export async function register(registerData, token) {
+export async function register({ firstname, lastname, email, password }) {
   try {
     const response = await fetch(APIUrl + endpoint.register, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(registerData),
+      body: JSON.stringify({ firstname, lastname, email, password }),
     });
-    const data = await response.json();
-
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-    }
 
     if (!response.ok) {
-      throw new Error(`Registration failed: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(errorData.message || `Registration failed: ${response.status}`);
     }
 
-    return await response.json();
+    const result = await response.json();
+    return result;
   } catch (error) {
     console.error("Registration error:", error);
     throw error;
   }
 }
 
-export async function login(loginData, token) {
+export async function login(loginData) {
   try {
     const response = await fetch(APIUrl + endpoint.login, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(loginData),
     });
